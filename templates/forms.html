@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="contents">
+      <h1>cornell census </h1><br>
+      <form class="" action="" method="post">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <div class="form-group">
+            {{form.cField.label(class='form-control-label')}}
+            {{form.cField(class='form-control-label')}}
+          </div>
+          <div class="form-group">
+            {{form.rField.label(class='form-control-label')}}
+            {{form.rField(class='form-control-label')}}
+          </div>
+          <div class="form-group">
+            {{form.sField(class='btn')}}
+          </div>
+        </fieldset>
+      </form>
+
+    </div>
+  </body>
+</html>
