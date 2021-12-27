@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cornell-census",
+  "private_key_id": "79e4741366f47cd26dd2fe081e00143a086ade16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcjIVTTszdK45y\n9VhVjucn+mk1OANykA/Qm5Yy9/Oe1TaYjksz1/n9vjjGQRxup70QWIaw8uT9eHPK\nSNAhpPZgqKQp6QBNfKZrEAYShWFQIg0BylUFoNfcJZmadTtJ5OOU7fQlePZmRKb6\n27Krpi89/YEuBwTLFJe3KYdT6rbrIR/0XbzRxThhVIQSenCjT5myOJwJSEN4WX+8\nF378/kZVwu+2VhWJe5/i3Vy6zliB7YC1RJSherO1LnElV+1lIQmETkb/E3OpoUsH\n2E73wQHSEs7jtbhdw0kaG/S0TAsWLd/mGwnOvutA7nP/v1VFx58NyDoMhStMW+xv\nGsZlAh0PAgMBAAECggEAMcakZda6YOCGjJriGWI0sYt3hEppHjYcMTInUdFxDuGw\nWFV2J+fWPw4Ks07koXKINPhQ61Zv5QA1oO4B75CqHhXBDOpfBERMDeKsa5spU/df\nt2AEJKP9vqvd6TS5Q0eZ7TKz3G5XujC9/yl36AgRIV7HgkENDx1fGAgGVXJd8ui3\nnpnr0vfqxXxUCW/kZaof9Mhj5lzps47apoS1PaAGbzFAncDkJ1GgFzURLb8rZmyK\nvyEr6aNHMgCxezE/XcmC8OLvjHMwi2VpWzxwFE5cH363ugEJ8D8/ewqfb8YuYzfG\n/zARonUSWO25ryZZJxmrhaA8/nBfps/eKl6WpN93YQKBgQDaOAz2P2g7WWOtxO/9\nUT/KHd7aj0TqnU7LAvTbQAMKcfGB76kSwO5ShGjGl0a11wY67oaVqWCW7wMpFh93\nYX8sfwUouoGCrlnIINk1RUcFK+pIBE1N1JWHtiJgHtUb6tEJk0rB6gfC+Jo3zhEl\nS+Wam8YbR8sDXHK2H8C8YUqiGQKBgQC3px3o1i5VDMSEj0rW6QQ33r7tvk8fKIfE\naCipjqzN33LJHeg6FsmB12COiVh+wCIOLWYR5y7Qqd1/ZMQc4mCrPGYU3WoAhwlv\n4HaYWVRQqEkd7FjdHen4AdbOqeMqUWVPtuaUq3UgZTkaDg2EaDgH8WjEorRuEkQ1\nkednwfCtZwKBgATiek/MzY1+i7+pB+I4vl/M2V81E8rYqJncwBRkU20ZbdmFvtgf\nn3YTZrEDU97gKFCLZFHXT8UxJnX1+9BVS154nWny+tEtC+9x5MrPeS6BdCYWipBy\ncMJv7kcOiaCtWe6H8IV0sqXHoNQc9b9K+qHCWOXlboLtv9eZ0FunJd+JAoGAJMQP\n+Mzn+Z7UuLT3Bo8fiQ/OqUmwDUzP4UH44fjuH0jccebK1tY5AQVdDyvvy3ArYSs1\ng+AEP0HCVf6WRDINqDovNX4d+n0OJpeJJna7qmoGOTdXkuyqKjw0BKt+Drq8zXiQ\nMLMif5nEFLM7gYZbsTti/fqUpHSDszXCXcM1q4ECgYAGApctQRuRsrl6kooXamjY\nimNFTmrFCe4xRmLbzaF4jgEpXdkVkdQiuBr0eiFOH4gQD6uYGOVr9IGWyv/3B9ni\nX4PMRIwx4U2uFZcvoDSDfm5sPDxvtqnEn609tz+ZLNVo7cP04CVQ0Oo3mRdyahJY\nrkhNU6E/GY9/yy7rG9B1jA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cornellcensus@cornell-census.iam.gserviceaccount.com",
+  "client_id": "110350310298471162387",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cornellcensus%40cornell-census.iam.gserviceaccount.com"
+}
