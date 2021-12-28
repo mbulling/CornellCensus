@@ -21,7 +21,7 @@ def graphs():
     """
     renders the graphs.html file
     """
-    return render_template('graphs.html')
+    return render_template('success.html') #render_template('graphs.html')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/forms', methods=['GET', 'POST'])
@@ -33,14 +33,23 @@ def forms():
     if q.validate_on_submit():
         college = q.cField.data
         rating = q.rField.data
-        data = [college, rating]
+        year = q.yField.data
+        major = q.mField.data
+        data = [college, rating, year, major]
         db.sheet.insert_row(data, db.nindex())
         c = db.getcollege()
         r = db.getrating()
+        m = db.getmajor()
+        y = db.getyear()
         flash('data saved', 'success')
-        return render_template('graphs.html', colleges=c, rating=r)
+        return render_template('success.html', colleges=c, rating=r, year=y, major=m)
 
     return render_template('forms.html', form=q)
+
+def pullRatings():
+    return db.getrating()
+
+testList = db.getrating()
 
 # if __name__ == '__main__':
 #     app.run(debug=True)

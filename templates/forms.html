@@ -2,11 +2,22 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/styles/main.css">
     <title></title>
   </head>
   <body>
+   
+     
+     <img src="../static/styles/img/CCLogo3.png" width="468.5" height="151">
+     
+     <div class="opening">
+     <p class="dot"> .</p>
+     
+     </div>
+     
+     
+
     <div class="contents">
-      <h1>cornell census </h1><br>
       <form class="" action="" method="post">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -14,6 +25,17 @@
             {{form.cField.label(class='form-control-label')}}
             {{form.cField(class='form-control-label')}}
           </div>
+          <br>
+          <div class="form-group">
+            {{form.mField.label(class='form-control-label')}}
+            {{form.mField(class='form-control-label')}}
+          </div>
+          <br>
+          <div class="form-group">
+            {{form.yField.label(class='form-control-label')}}
+            {{form.yField(class='form-control-label')}}
+          </div>
+          <br>
           <div class="form-group">
             {{form.rField.label(class='form-control-label')}}
             {{form.rField(class='form-control-label')}}

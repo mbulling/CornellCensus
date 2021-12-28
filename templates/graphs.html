@@ -23,8 +23,9 @@
 
   <script>
     let myChart = document.getElementById('myChart').getContext('2d');
-    let colleges = Array.from(document.getElementById('clist').textContent);
+    let colleges = Array.from(document.getElementById('clist').innerHTML);
     let rating = Array.from(document.getElementById('rlist').textContent);
+    let year = Array.from(document.getElementById('ylist').textContent);
     // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';
     Chart.defaults.global.defaultFontSize = 10;
@@ -33,10 +34,10 @@
     let ratechart = new Chart(myChart, {
       type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data:{
-        labels: colleges, //pass college
+        labels: [['College of Engineering'], ['College of Arts and Sciences'], ['Dyson School of Business'], ['College of Agriculture and Life Sciences'], ['College of Human Ecology']], //colleges, //pass college
         datasets:[{
           label:'rating',
-          data: [10,2,3,4,4,4], //pass rating
+          data: [6, 2, 3, 4, 5], //rating, //[10,2,3,4,4,4], //pass rating
           //backgroundColor:'green',
           backgroundColor:[
             'rgba(255, 99, 132, 0.6)',
