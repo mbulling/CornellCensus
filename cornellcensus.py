@@ -21,7 +21,9 @@ def graphs():
     """
     renders the graphs.html file
     """
-    return render_template('success.html') #render_template('graphs.html')
+    labels = ["Engineering", "CALS", "CAS"]
+    values = [600, 50, 200, 550, 320]
+    return render_template('graphs.html', labels=labels, values=values)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/forms', methods=['GET', 'POST'])
@@ -42,7 +44,9 @@ def forms():
         m = db.getmajor()
         y = db.getyear()
         flash('data saved', 'success')
-        return render_template('success.html', colleges=c, rating=r, year=y, major=m)
+        labels = ["Engineering", "CALS", "CAS"]
+        values = [600, 50, 200, 550, 320]
+        return render_template('graphs.html', labels=labels, values=values)
 
     return render_template('forms.html', form=q)
 

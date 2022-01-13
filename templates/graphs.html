@@ -1,85 +1,78 @@
+{% block content %}
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <title>graph</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
-  <div class="colleges">
-    <h3 id='clist' style="color:white;">{{ colleges }}</h3>
-  </div>
-  <div class="rating">
-    <h3 id='rlist' style="color:white;">{{ rating }}</h3>
-  </div>
-
-  <div class="container">
-    <canvas id="myChart"></canvas>
-  </div>
-
-
-  <script>
-    let myChart = document.getElementById('myChart').getContext('2d');
-    let colleges = Array.from(document.getElementById('clist').innerHTML);
-    let rating = Array.from(document.getElementById('rlist').textContent);
-    let year = Array.from(document.getElementById('ylist').textContent);
-    // Global Options
-    Chart.defaults.global.defaultFontFamily = 'Lato';
-    Chart.defaults.global.defaultFontSize = 10;
-    Chart.defaults.global.defaultFontColor = '#777';
-
-    let ratechart = new Chart(myChart, {
-      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-      data:{
-        labels: [['College of Engineering'], ['College of Arts and Sciences'], ['Dyson School of Business'], ['College of Agriculture and Life Sciences'], ['College of Human Ecology']], //colleges, //pass college
-        datasets:[{
-          label:'rating',
-          data: [6, 2, 3, 4, 5], //rating, //[10,2,3,4,4,4], //pass rating
-          //backgroundColor:'green',
-          backgroundColor:[
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)'
-          ],
-          borderWidth:1,
-          borderColor:'#777',
-          hoverBorderWidth:3,
-          hoverBorderColor:'#000'
-        }]
-      },
-      options:{
-        title:{
-          display:true,
-          text:'college vs rating',
-          fontSize:25
-        },
-        legend:{
-          display:true,
-          position:'right',
-          labels:{
-            fontColor:'#000'
-          }
-        },
-        layout:{
-          padding:{
-            left:50,
-            right:0,
-            bottom:0,
-            top:0
-          }
-        },
-        tooltips:{
-          enabled:true
-        }
+  </head>
+  <body>
+    <br>
+    <center><h1>CornellCensus Data</h1></center>
+    <br>
+    <div style="align-items:center;"><canvas id="myChart" width="1000" height="400" style="margin:0 auto;"></canvas></div>
+    <br>
+    <div style="align-items:center;"><canvas id="myChart2" width="1000" height="400" style="margin:0 auto;"></canvas></div>
+    <script>
+      Chart.defaults.global.responsive = false;
+      var c1 = '{{ values[0] }}';
+      var c2 = '{{ values[1] }}';
+      var c3 = '{{ values[2] }}';
+      var c4 = '{{ values[3] }}';
+      var c5 = '{{ values[4] }}';
+      var chartData = {
+                    labels: ["College of Engineering", "College of Agriculture & Life Sciences", "College of Arts & Sciences", 
+                  "College of Human Ecology", "SC Johnson School of Business"],
+                    datasets: [
+                      {
+                        data: [c1, c2, c3, c4, c5],
+                        backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                      }
+                    ]
       }
-    });
-  </script>
-</body>
-</html>
+
+      // get chart canvas
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var ctx2 = document.getElementById("myChart2").getContext("2d");
+
+      var options = {
+              tooltips: {
+                enabled: false
+              },
+              plugins: {
+                labels: [
+                        {
+                            render: 'label',
+                            position: 'outside',
+                            fontColor: '#000',
+                            fontSize: 15
+                        },
+                        {
+                            render: 'percentage',
+                            fontColor: '#000',
+                            fontSize: 10,
+                            position: 'border',
+                        }
+                ]
+               }
+};
+
+      // create the chart using the chart canvas
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: chartData,
+          options:options
+      });
+
+      var myChart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: chartData,
+          options:options
+      });
+
+    </script>
+  </body>
+</html> 
+{% endblock %}
