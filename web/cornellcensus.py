@@ -35,7 +35,6 @@ def forms():
         rating = q.rField.data
         year = q.yField.data
         major = q.mField.data
-        rating = 299
 
         user = User.query.filter_by(school=school).first()
 

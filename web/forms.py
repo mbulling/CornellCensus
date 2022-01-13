@@ -13,5 +13,5 @@ class form(FlaskForm):
     cField = SelectField('Select Your College', choices=colleges)
     mField = SelectField('Select Your Major', choices=majorsCOE)
     yField = SelectField('Select Your Year', choices=years)
-    rField = IntegerField('Rating', validators=[DataRequired(),AnyOf(ratings)])
+    rField = IntegerField('Rating')#, validators=[DataRequired(),AnyOf(ratings)])
     sField = SubmitField('Submit')
