@@ -6,17 +6,15 @@ information to html file to visualize user-submitted data. Graphs are dynamic an
 reflect real-time changes to a database
 """
 
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import form
-import db
+from flask import Flask, render_template, url_for, flash, redirect, Blueprint, request
+from flask_login import login_user, login_required, logout_user, current_user
+from .forms import form
+from .models import User
+from . import db
 
+cornellcensus = Blueprint('cornellcensus', __name__)
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secretkey'
-
-
-
-@app.route('/graphs', methods=['GET', 'POST'])
+@cornellcensus.route('/graphs', methods=['GET', 'POST'])
 def graphs():
     """
     renders the graphs.html file
@@ -25,35 +23,31 @@ def graphs():
     values = [600, 50, 200, 550, 320]
     return render_template('graphs.html', labels=labels, values=values)
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/forms', methods=['GET', 'POST'])
+@cornellcensus.route('/', methods=['GET', 'POST'])
 def forms():
     """
     validates form input and passes arguments to an html file
     """
     q = form()
     if q.validate_on_submit():
-        college = q.cField.data
+        school = q.cField.data
+        school = "College of Engineering"
         rating = q.rField.data
         year = q.yField.data
         major = q.mField.data
-        data = [college, rating, year, major]
-        db.sheet.insert_row(data, db.nindex())
-        c = db.getcollege()
-        r = db.getrating()
-        m = db.getmajor()
-        y = db.getyear()
+        rating = 299
+
+        user = User.query.filter_by(school=school).first()
+
+        new_user = User(school=school, rating=rating)
+        db.session.add(new_user)
+        db.session.commit()
+       
         flash('data saved', 'success')
         labels = ["Engineering", "CALS", "CAS"]
         values = [600, 50, 200, 550, 320]
-        return render_template('graphs.html', labels=labels, values=values)
+        return render_template('graphs.html', user=current_user, labels=labels, values=values, rating=rating)
 
     return render_template('forms.html', form=q)
 
-def pullRatings():
-    return db.getrating()
 
-testList = db.getrating()
-
-if __name__ == '__main__':
-    app.run(debug=True)
