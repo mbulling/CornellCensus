@@ -18,7 +18,7 @@
      
      
 
-    <div class="contents">
+    <div class="contents" style="margin-left:30px;padding-top:15px;">
       <form class="" action="" method="post">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -37,12 +37,13 @@
             {{form.yField(class='form-control-label')}}
           </div>
           <br>
-          <div class="form-group">
+          <div class="form-group" style="width:195px;">
             {{form.gField.label(class='form-control-label')}}
             {{form.gField(class='form-control-label')}}
           </div>
-          <div class="form-group">
-            {{form.sField(class='btn')}}
+          <br>
+          <div class="form-group" style="background-color:#C70039;font-weight:bold;color:white;">
+            {{form.sField(class="btn")}}
           </div>
         </fieldset>
       </form>

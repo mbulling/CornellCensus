@@ -16,5 +16,5 @@ class form(FlaskForm):
     mField = SelectField('Select Your Major', choices=majorsCOE)
     yField = SelectField('Select Your Year', choices=years)
     gField = FloatField('GPA', validators=[DataRequired(), MaxValueValidator(4.3, "GPA cannot be greater than 4.3."), MinValueValidator(1.0, "GPA cannot be less than 1.0.")])
-    sField = SubmitField('Submit')
+    sField = SubmitField('Submit Data')
 
