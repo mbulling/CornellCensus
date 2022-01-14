@@ -11,6 +11,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from .forms import form
 from .models import User
 from . import db
+import sqlite3
 
 cornellcensus = Blueprint('cornellcensus', __name__)
 
@@ -29,23 +30,51 @@ def forms():
     validates form input and passes arguments to an html file
     """
     q = form()
-    if q.validate_on_submit():
+    if request.method == 'POST':
         school = q.cField.data
         school = "College of Engineering"
-        rating = q.rField.data
         year = q.yField.data
         major = q.mField.data
+        gpa = q.gField.data
 
         user = User.query.filter_by(school=school).first()
 
-        new_user = User(school=school, rating=rating)
+        new_user = User(school=school, gpa=gpa)
         db.session.add(new_user)
         db.session.commit()
+
+        conn = sqlite3.connect('web/data.db')
+        posts = conn.execute('SELECT * FROM user').fetchall()
+        conn.close()
+
+        engGPA = 0.0
+        engCount = 0
+
+        calsGPA = 0.0
+        calsCount = 0
+
+        for p in posts:
+            if p[1] == 'College of Engineering':
+                engCount = engCount + 1
+                engGPA = engGPA + float(p[2])
+            elif p[1] == 'College of Agriculture & Life Sciences':
+                calsCount = calsCount + 1
+                calsGPA = calsGPA + float(p[2])
+        
+        if engCount == 0:
+            engCount = 1
+        if calsCount == 0:
+            calsCount = 1
+        engGPA = engGPA / engCount
+        calsGPA = calsGPA / calsCount
+
+        gpas = [engGPA, calsGPA]
+          
        
         flash('data saved', 'success')
         labels = ["Engineering", "CALS", "CAS"]
         values = [600, 50, 200, 550, 320]
-        return render_template('graphs.html', user=current_user, labels=labels, values=values, rating=rating)
+        return render_template('graphs.html', user=current_user, labels=labels, values=values, posts=posts, gpas=gpas)
 
     return render_template('forms.html', form=q)
 

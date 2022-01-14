@@ -11,17 +11,19 @@
   <body>
     <br>
     <center><h1>CornellCensus Data</h1></center>
+    <h1>{{ avgr }}</h1>
     <br>
     <div style="align-items:center;"><canvas id="myChart" width="1000" height="400" style="margin:0 auto;"></canvas></div>
+    <br>
     <br>
     <div style="align-items:center;"><canvas id="myChart2" width="1000" height="400" style="margin:0 auto;"></canvas></div>
     <script>
       Chart.defaults.global.responsive = false;
-      var c1 = '{{ rating }}';
-      var c2 = '{{ values[1] }}';
-      var c3 = '{{ values[2] }}';
-      var c4 = '{{ values[3] }}';
-      var c5 = '{{ values[4] }}';
+      var c1 = '{{ gpas[0] }}';
+      var c2 = '{{ gpas[1] }}';
+      var c3 = 3.1;//'{{ values[2] }}';
+      var c4 = 2.4;//'{{ values[3] }}';
+      var c5 = 3.3;//'{{ values[4] }}';
       var chartData = {
                     labels: ["College of Engineering", "College of Agriculture & Life Sciences", "College of Arts & Sciences", 
                   "College of Human Ecology", "SC Johnson School of Business"],
@@ -47,12 +49,12 @@
                             render: 'label',
                             position: 'outside',
                             fontColor: '#000',
-                            fontSize: 15
+                            fontSize: 12
                         },
                         {
                             render: 'percentage',
                             fontColor: '#000',
-                            fontSize: 10,
+                            fontSize: 8,
                             position: 'border',
                         }
                 ]
@@ -61,7 +63,7 @@
 
       // create the chart using the chart canvas
       var myChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: chartData,
           options:options
       });

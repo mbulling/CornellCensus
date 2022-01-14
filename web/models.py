@@ -5,4 +5,4 @@ from sqlalchemy.sql import func
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     school = db.Column(db.String(100))
-    rating = db.Column(db.String(10))
+    gpa = db.Column(db.String(10))

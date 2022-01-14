@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField, StringField, SelectField
+from wtforms import IntegerField, SubmitField, StringField, SelectField, FloatField
 from wtforms.validators import DataRequired, AnyOf
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+
 class form(FlaskForm):
     """
     creates the form for user input
@@ -8,10 +11,10 @@ class form(FlaskForm):
     colleges = ['College of Engineering', 'College of Arts and Sciences', 'Dyson School of Business', 'College of Agriculture and Life Sciences', 'College of Human Ecology']
     majorsCOE = ['Computer Science', 'Electrical and Computer Engineering', 'Mechanical Engineering']
     years = ['Freshman', 'Sophomore', 'Junior', 'Senior']
-    ratings =[1,2,3,4,5,6,7,8,9,10]
 
     cField = SelectField('Select Your College', choices=colleges)
     mField = SelectField('Select Your Major', choices=majorsCOE)
     yField = SelectField('Select Your Year', choices=years)
-    rField = IntegerField('Rating')#, validators=[DataRequired(),AnyOf(ratings)])
+    gField = FloatField('GPA', validators=[DataRequired(), MaxValueValidator(4.3, "GPA cannot be greater than 4.3."), MinValueValidator(1.0, "GPA cannot be less than 1.0.")])
     sField = SubmitField('Submit')
+
