@@ -8,7 +8,7 @@ class form(FlaskForm):
     """
     creates the form for user input
     """
-    colleges = ['College of Engineering', 'College of Arts and Sciences', 'Dyson School of Business', 'College of Agriculture and Life Sciences', 'College of Human Ecology']
+    colleges = ['College of Engineering', 'College of Arts and Sciences', 'SC Johnson School of Business', 'College of Agriculture and Life Sciences', 'College of Human Ecology']
     majorsCOE = ['Computer Science', 'Electrical and Computer Engineering', 'Mechanical Engineering']
     years = ['Freshman', 'Sophomore', 'Junior', 'Senior']
 

@@ -32,7 +32,6 @@ def forms():
     q = form()
     if request.method == 'POST':
         school = q.cField.data
-        school = "College of Engineering"
         year = q.yField.data
         major = q.mField.data
         gpa = q.gField.data
@@ -53,28 +52,51 @@ def forms():
         calsGPA = 0.0
         calsCount = 0
 
+        casGPA = 0.0
+        casCount = 0
+
+        ecoGPA = 0.0
+        ecoCount = 0
+
+        busGPA = 0.0
+        busCount = 0
+
         for p in posts:
             if p[1] == 'College of Engineering':
                 engCount = engCount + 1
                 engGPA = engGPA + float(p[2])
-            elif p[1] == 'College of Agriculture & Life Sciences':
+            elif p[1] == 'College of Agriculture and Life Sciences':
                 calsCount = calsCount + 1
                 calsGPA = calsGPA + float(p[2])
+            elif p[1] == 'College of Arts and Sciences':
+                casCount = casCount + 1
+                casGPA = casGPA + float(p[2])
+            elif p[1] == 'College of Human Ecology':
+                ecoCount = ecoCount + 1
+                ecoGPA = ecoGPA + float(p[2])
+            elif p[1] == 'SC Johnson School of Business':
+                busCount = busCount + 1
+                busGPA = busGPA + float(p[2])
         
-        if engCount == 0:
-            engCount = 1
-        if calsCount == 0:
-            calsCount = 1
-        engGPA = engGPA / engCount
-        calsGPA = calsGPA / calsCount
+        if engCount != 0:
+            engGPA = engGPA / engCount
+        if calsCount != 0:
+            calsGPA = calsGPA / calsCount
+        if casCount != 0:
+            casGPA = casGPA / casCount
+        if ecoCount != 0:
+            ecoGPA = ecoGPA / ecoCount
+        if busCount != 0:
+            busGPA = busGPA / busCount
 
-        gpas = [engGPA, calsGPA]
+        gpas = [engGPA, calsGPA, casGPA, ecoGPA, busGPA]
+        counts = [engCount, calsCount, casCount, ecoCount, busCount]
           
        
         flash('data saved', 'success')
         labels = ["Engineering", "CALS", "CAS"]
         values = [600, 50, 200, 550, 320]
-        return render_template('graphs.html', user=current_user, labels=labels, values=values, posts=posts, gpas=gpas)
+        return render_template('graphs.html', user=current_user, labels=labels, values=values, posts=posts, gpas=gpas, counts=counts)
 
     return render_template('forms.html', form=q)
 

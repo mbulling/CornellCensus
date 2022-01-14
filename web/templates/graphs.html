@@ -21,9 +21,16 @@
       Chart.defaults.global.responsive = false;
       var c1 = '{{ gpas[0] }}';
       var c2 = '{{ gpas[1] }}';
-      var c3 = 3.1;//'{{ values[2] }}';
-      var c4 = 2.4;//'{{ values[3] }}';
-      var c5 = 3.3;//'{{ values[4] }}';
+      var c3 = '{{ gpas[2] }}';
+      var c4 = '{{ gpas[3] }}';
+      var c5 = '{{ gpas[4] }}';
+
+      var countEng = '{{ counts[0] }}';
+      var countCals = '{{ counts[1] }}';
+      var countCas = '{{ counts[2] }}';
+      var countEco = '{{ counts[3] }}';
+      var countBus = '{{ counts[4] }}';
+
       var chartData = {
                     labels: ["College of Engineering", "College of Agriculture & Life Sciences", "College of Arts & Sciences", 
                   "College of Human Ecology", "SC Johnson School of Business"],
@@ -35,6 +42,18 @@
                     ]
       }
 
+      var chartData2 = {
+                    labels: ["College of Engineering", "College of Agriculture & Life Sciences", "College of Arts & Sciences", 
+                  "College of Human Ecology", "SC Johnson School of Business"],
+                    datasets: [
+                      {
+                        data: [countEng, countCals+1, countCas+1, countEco+1, countBus+2],
+                        backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                      }
+                    ]
+      }
+
+      
       // get chart canvas
       var ctx = document.getElementById("myChart").getContext("2d");
       var ctx2 = document.getElementById("myChart2").getContext("2d");
@@ -65,12 +84,25 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: chartData,
-          options:options
+        options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }],
+          },
+          plugins: {
+          labels: {
+            render: () => {}
+          }
+        }
+}
       });
 
       var myChart2 = new Chart(ctx2, {
         type: 'pie',
-        data: chartData,
+        data: chartData2,
           options:options
       });
 
