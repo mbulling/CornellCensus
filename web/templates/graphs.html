@@ -11,12 +11,14 @@
   <body>
     <br>
     <center><h1>CornellCensus Data</h1></center>
-    <h1>{{ avgr }}</h1>
     <br>
+    <center><h4>Average GPA by College</h4></center>
     <div style="align-items:center;"><canvas id="myChart" width="1000" height="400" style="margin:0 auto;"></canvas></div>
     <br>
     <br>
     <div style="align-items:center;"><canvas id="myChart2" width="1000" height="400" style="margin:0 auto;"></canvas></div>
+    <br>
+    <div style="align-items:center;"><canvas id="myChart3" width="1000" height="400" style="margin:0 auto;"></canvas></div>
     <script>
       Chart.defaults.global.responsive = false;
       var c1 = '{{ gpas[0] }}';
@@ -30,6 +32,11 @@
       var countCas = '{{ counts[2] }}';
       var countEco = '{{ counts[3] }}';
       var countBus = '{{ counts[4] }}';
+
+      var fCount = '{{ years[0] }}';
+      var sCount = '{{ years[1] }}';
+      var jCount = '{{ years[2] }}';
+      var seCount = '{{ years[3] }}';
 
       var chartData = {
                     labels: ["College of Engineering", "College of Agriculture & Life Sciences", "College of Arts & Sciences", 
@@ -53,10 +60,19 @@
                     ]
       }
 
-      
-      // get chart canvas
+      var chartData3 = {
+                    labels: ["Freshman", "Sophomore", "Junior", "Senior"],
+                    datasets: [
+                      {
+                        data: [fCount, sCount, jCount, seCount],
+                        backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                      }
+                    ]
+      }
+
       var ctx = document.getElementById("myChart").getContext("2d");
       var ctx2 = document.getElementById("myChart2").getContext("2d");
+      var ctx3 = document.getElementById("myChart3").getContext("2d");
 
       var options = {
               tooltips: {
@@ -96,13 +112,22 @@
           labels: {
             render: () => {}
           }
-        }
+        },
+        legend: {
+            display: false
+         }
 }
       });
 
       var myChart2 = new Chart(ctx2, {
         type: 'pie',
         data: chartData2,
+          options:options
+      });
+
+      var myChart3 = new Chart(ctx3, {
+        type: 'pie',
+        data: chartData3,
           options:options
       });
 

@@ -38,7 +38,7 @@ def forms():
 
         user = User.query.filter_by(school=school).first()
 
-        new_user = User(school=school, gpa=gpa)
+        new_user = User(school=school, gpa=gpa, year=year)
         db.session.add(new_user)
         db.session.commit()
 
@@ -61,6 +61,11 @@ def forms():
         busGPA = 0.0
         busCount = 0
 
+        fCount = 0
+        sCount = 0
+        jCount = 0
+        seCount = 0
+
         for p in posts:
             if p[1] == 'College of Engineering':
                 engCount = engCount + 1
@@ -77,6 +82,14 @@ def forms():
             elif p[1] == 'SC Johnson School of Business':
                 busCount = busCount + 1
                 busGPA = busGPA + float(p[2])
+            if p[3] == 'Freshman':
+                fCount = fCount + 1
+            elif p[3] == 'Sophomore':
+                sCount = sCount + 1
+            elif p[3] == 'Junior':
+                jCount = jCount + 1
+            elif p[3] == 'Senior':
+                seCount = seCount + 1
         
         if engCount != 0:
             engGPA = engGPA / engCount
@@ -91,12 +104,11 @@ def forms():
 
         gpas = [engGPA, calsGPA, casGPA, ecoGPA, busGPA]
         counts = [engCount, calsCount, casCount, ecoCount, busCount]
+        years = [fCount, sCount, jCount, seCount]
           
        
         flash('data saved', 'success')
-        labels = ["Engineering", "CALS", "CAS"]
-        values = [600, 50, 200, 550, 320]
-        return render_template('graphs.html', user=current_user, labels=labels, values=values, posts=posts, gpas=gpas, counts=counts)
+        return render_template('graphs.html', user=current_user, posts=posts, gpas=gpas, counts=counts, years=years)
 
     return render_template('forms.html', form=q)
 
