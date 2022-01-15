@@ -9,7 +9,7 @@ class form(FlaskForm):
     creates the form for user input
     """
     colleges = ['College of Engineering', 'College of Arts and Sciences', 'SC Johnson School of Business', 'College of Agriculture and Life Sciences', 'College of Human Ecology']
-    majorsCOE = ['Computer Science', 'Electrical and Computer Engineering', 'Mechanical Engineering']
+    majorsCOE = ['Computer Science', 'Electrical and Computer Engineering', 'Mechanical Engineering', 'Chemical Engineering']
     years = ['Freshman', 'Sophomore', 'Junior', 'Senior']
 
     cField = SelectField('Select Your College', choices=colleges)
