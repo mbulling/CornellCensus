@@ -2,3 +2,4 @@ web/data.db
 __pycache__/
 web/__pycache__
 .DS_Store
+web/.DS_Store
