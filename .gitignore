@@ -1,4 +1,4 @@
-web/data.db
+#web/data.db
 __pycache__/
 web/__pycache__
 .DS_Store
